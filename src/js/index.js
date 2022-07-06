@@ -1,6 +1,5 @@
 'use strict';
-import {x} from './api';
+import {getGeocode} from './api-functions';
 
 console.log('sup');
-
-console.log(x);
+//console.log(getGeocode);

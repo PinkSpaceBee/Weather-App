@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/api.js":
-/*!***********************!*\
-  !*** ./src/js/api.js ***!
-  \***********************/
+/***/ "./src/js/api-functions.js":
+/*!*********************************!*\
+  !*** ./src/js/api-functions.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"x\": () => (/* binding */ x)\n/* harmony export */ });\nconst x ='deer are cute';\n\n\n\n\n\n//# sourceURL=webpack://weather-app/./src/js/api.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getGeocode\": () => (/* binding */ getGeocode)\n/* harmony export */ });\n/* harmony import */ var _api_key__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api-key */ \"./src/js/api-key.js\");\n\n\n;\n\nasync function getGeocode() {\n    try {\n        const city = 'kyiv';\n        \n        const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${_api_key__WEBPACK_IMPORTED_MODULE_0__.apiKey}`, {mode: 'cors'});\n\n        console.log(response);\n    } catch(err) {\n        console.log(err);\n    }\n}\n\ngetGeocode();\n\n\n\n\n\n//# sourceURL=webpack://weather-app/./src/js/api-functions.js?");
+
+/***/ }),
+
+/***/ "./src/js/api-key.js":
+/*!***************************!*\
+  !*** ./src/js/api-key.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"apiKey\": () => (/* binding */ apiKey)\n/* harmony export */ });\nconst apiKey = '921d13d1f0511dece8b22ba91fc75172';\n\n\n\n//# sourceURL=webpack://weather-app/./src/js/api-key.js?");
 
 /***/ }),
 
@@ -26,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ \"./src/js/api.js\");\n\n\n\nconsole.log('sup');\n\nconsole.log(_api__WEBPACK_IMPORTED_MODULE_0__.x);\n\n//# sourceURL=webpack://weather-app/./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _api_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api-functions */ \"./src/js/api-functions.js\");\n\n\n\nconsole.log('sup');\n//console.log(getGeocode);\n\n\n//# sourceURL=webpack://weather-app/./src/js/index.js?");
 
 /***/ })
 
