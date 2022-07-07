@@ -6,7 +6,7 @@ mode: 'development',
   entry: './src/js/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'Weather App',
     }),
   ],
   output: {
