@@ -27,11 +27,10 @@ export async function geocode(url, city) {
     }
 }
 
-// get current weather data using geo coordinates
+// get current, hourly, and daily weather data using geo coordinates
 export async function getWeatherData(lat, lon, url) {
     const response = await fetch (url, {mode: 'cors'});
 
     const weatherData = await response.json();
-    console.log(weatherData);
     return weatherData;
 }
