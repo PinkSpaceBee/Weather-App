@@ -25,3 +25,12 @@ export function displayCurrWeather(container, temp, currCondition, feelsLike, wi
     const humidityP = bottomDiv.appendChild(document.createElement('p'));
     humidityP.textContent = humidity;
 }
+
+export function clearWeatherDiv(div) {
+    let child = div.lastElementChild;
+
+    while (child) {
+        div.removeChild(child);
+        child = div.lastElementChild;
+    }
+}
