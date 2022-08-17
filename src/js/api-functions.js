@@ -1,10 +1,5 @@
 export const KEY = '921d13d1f0511dece8b22ba91fc75172';
 
-export function getCityName(form) {
-const city = form.value;
-return city;
-}
-
 // get latitude and longitude by location name
 export async function geocode(url, city) {
 
@@ -28,7 +23,7 @@ export async function geocode(url, city) {
 }
 
 // get current, hourly, and daily weather data using geo coordinates
-export async function getWeatherData(lat, lon, url) {
+export async function getWeatherData(url) {
     const response = await fetch (url, {mode: 'cors'});
 
     const weatherData = await response.json();

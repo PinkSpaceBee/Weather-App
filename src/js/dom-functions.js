@@ -25,12 +25,31 @@ export function displayCurrWeather(container, temp, currCondition, feelsLike, wi
     const humidityP = bottomDiv.appendChild(document.createElement('p'));
     humidityP.textContent = humidity;
 }
+export function setCityDate(offset, container) {
+    function setCity() {
+        const city = container.appendChild(document.createElement('p'));
+        city.textContent = 'city';
+    }
+    function setDate(offset) {
 
-export function clearWeatherDiv(div) {
-    let child = div.lastElementChild;
+        const date = new Date(new Date().getTime() + offset * 1000 
+        )
+            .toUTCString()
+            .slice(0, -12);
+
+        const dateP = container.appendChild(document.createElement('p'));
+        dateP.textContent = date;
+        dateP.classList.add('date');
+    }
+    setCity();
+    setDate(offset);
+}
+
+export function removeChildren(parent) {
+    let child = parent.lastElementChild;
 
     while (child) {
-        div.removeChild(child);
-        child = div.lastElementChild;
+        parent.removeChild(child);
+        child = parent.lastElementChild;
     }
 }
