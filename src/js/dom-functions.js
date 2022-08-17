@@ -7,23 +7,44 @@ export function displayCurrWeather(container, temp, currCondition, feelsLike, wi
 
     // temperature in C
     const tempP = topDiv.appendChild(document.createElement('p'));
-    tempP.textContent = temp;
+    tempP.textContent = `${temp} ${'\u00B0'}C`;
+
     // current condition, like rain, or drizzle
     const currConditionP = topDiv.appendChild(document.createElement('p'));
+
+    // first letter of every word to uppercase
+    currCondition = currCondition
+    .split(' ')
+    .map(word => {
+        const firstLetter = word.toUpperCase().substr(0,1);
+        // the rest of the str is lowercase
+        const strLoweCase = word.toLowerCase().slice(1);
+        word = `${firstLetter}${strLoweCase}`;
+        return word;
+    })
+    .join(' ');
+
     currConditionP.textContent = currCondition;
-    // human perception of weather
+
+    // human perception of weather in C
     const feelsLikeP = topDiv.appendChild(document.createElement('p'));
-    feelsLikeP.textContent = feelsLike;
+    feelsLikeP.textContent = `Feels like ${feelsLike}`;
 
     const bottomDiv = currentWeatherDiv.appendChild(document.createElement('div'));
     bottomDiv.classList.add('bottom-div');
 
     // wind speed in metre/sec
+    // split the text into 2 p elements so it would look better
     const windP = bottomDiv.appendChild(document.createElement('p'));
-    windP.textContent = wind;
+    windP.textContent = `Wind speed`;
+    const windPBottom = bottomDiv.appendChild(document.createElement('p'));
+    windPBottom.textContent = `${wind} m/s`;
     // humidity, %
+    // again, two p elements
     const humidityP = bottomDiv.appendChild(document.createElement('p'));
-    humidityP.textContent = humidity;
+    humidityP.textContent = `Humidity`;
+    const humidityPBottom = bottomDiv.appendChild(document.createElement('p'));
+    humidityPBottom.textContent = `${humidity}%`;
 }
 export function setCityDate(offset, city, container) {
     function setCity(city) {

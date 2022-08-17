@@ -13,8 +13,6 @@ async function getWeatherData() {
     weather = await weatherApi.getWeatherData(`https://api.openweathermap.org/data/2.5/onecall?lat=${geocode.lat}&lon=${geocode.lon}&exclude=minutely,alerts&appid=${weatherApi.KEY}&units=metric`);
     
     console.log(weather);
-    //create section to display current weather data
-    // domFunc.displayCurrWeather(document.querySelector('.weather-data'), weather.current.temp, weather.current.weather[0].description, weather.current.feels_like, weather.current.wind_speed, weather.current.humidity);
     
     return weather;
 }
@@ -23,12 +21,20 @@ async function displayCityDate(container) {
     const data = await getWeatherData();
     // clear the container when before creating it
     domFunc.removeChildren(container);
-    domFunc.setCityDate(data.timezone_offset, 'kyiv', container);
+    domFunc.setCityDate(data.timezone_offset, city, container);
 }
+
+async function displayWeather() {
+    const weather = await getWeatherData();
+
+    //create section to display current weather data
+    domFunc.displayCurrWeather(document.querySelector('.weather-data'), weather.current.temp, weather.current.weather[0].description, weather.current.feels_like, weather.current.wind_speed, weather.current.humidity);
+}
+
+displayWeather()
 
 displayCityDate(document.querySelector('.city-time'));
 
-``
 const searchBtn = document.querySelector('.search-bar > button');
   
     
