@@ -21,13 +21,9 @@ async function getWeatherData() {
 
 async function displayCityDate(container) {
     const data = await getWeatherData();
-    console.log(data);
-    //const x = new domFunc.weatherData(data);
-    //console.log(x);
-    //console.log(x.data.timezone_offset);
     // clear the container when before creating it
     domFunc.removeChildren(container);
-    domFunc.setCityDate(data.timezone_offset, container);
+    domFunc.setCityDate(data.timezone_offset, 'kyiv', container);
 }
 
 displayCityDate(document.querySelector('.city-time'));

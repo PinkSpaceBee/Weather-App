@@ -25,10 +25,19 @@ export function displayCurrWeather(container, temp, currCondition, feelsLike, wi
     const humidityP = bottomDiv.appendChild(document.createElement('p'));
     humidityP.textContent = humidity;
 }
-export function setCityDate(offset, container) {
-    function setCity() {
-        const city = container.appendChild(document.createElement('p'));
-        city.textContent = 'city';
+export function setCityDate(offset, city, container) {
+    function setCity(city) {
+        const cityP = container.appendChild(document.createElement('p'));
+
+        // ' KYIV ' => 'Kyiv' 
+        // remove spaces
+        city = city.replace(/\s/g, '');
+        // start str with uppercase letter
+        const firstLetter = city.toUpperCase().substr(0,1);
+        // the rest of the str is lowercase
+        const strLoweCase = city.toLowerCase().slice(1);
+
+        cityP.textContent = `${firstLetter}${strLoweCase}`;
     }
     function setDate(offset) {
 
@@ -41,7 +50,7 @@ export function setCityDate(offset, container) {
         dateP.textContent = date;
         dateP.classList.add('date');
     }
-    setCity();
+    setCity(city);
     setDate(offset);
 }
 
