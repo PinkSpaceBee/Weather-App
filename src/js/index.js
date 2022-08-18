@@ -57,7 +57,6 @@ async function displayWeather() {
         return elem.pop;
     }
 
-    
     // returns every 3rd hour 
     const hourly = weather.hourly
     .splice(0, 25)
@@ -65,10 +64,6 @@ async function displayWeather() {
         return index % 3 === 0;
     })
     .map(function(elem) {
-        //console.log(getTime(elem));
-        //getTemp(elem);
-        //getIcon(elem);
-        //getPop(elem);
         domFunc.displayHourlyWeather(document.querySelector('.hourly-weather'), getTime(elem), getTemp(elem), getIcon(elem), getPop(elem));
     });
 

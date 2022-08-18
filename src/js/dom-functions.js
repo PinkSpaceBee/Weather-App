@@ -58,8 +58,8 @@ export function displayHourlyWeather(container, time, temp, icon, pop) {
     tempP.textContent = `${temp}${'\u00B0'}C`;
 
     // weather icon
-    const iconImg = div.appendChild(document.createElement('p'));
-    iconImg.textContent = icon;
+    const iconImg = div.appendChild(document.createElement('img'));
+    iconImg.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
     //chance of rain
     const popP = div.appendChild(document.createElement('p'));
