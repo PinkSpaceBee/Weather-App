@@ -46,6 +46,14 @@ export function displayCurrWeather(container, temp, currCondition, feelsLike, wi
     const humidityPBottom = bottomDiv.appendChild(document.createElement('p'));
     humidityPBottom.textContent = `${humidity}%`;
 }
+
+export function displayHourlyWeather() {
+    // ok so the forecast api response contains hourly weather for 48 hours. I think it would be enough to display every 3rd hour of the first day. 
+    // 0,3,6,9,12,15,18,21
+
+    
+}
+
 export function setCityDate(offset, city, container) {
     function setCity(city) {
         const cityP = container.appendChild(document.createElement('p'));

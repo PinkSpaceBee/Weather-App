@@ -2,7 +2,7 @@
 import * as weatherApi from './api-functions';
 import * as domFunc from './dom-functions';
 
-let city = 'london'; 
+let city = 'kyiv'; 
 let weather;
 
 async function getWeatherData() {
@@ -36,31 +36,35 @@ async function displayWeather() {
 
     // returns every 3rd hour 
     const hourly = weather.hourly
-    .splice(24)
-    //.filter(function(value, index, arr) {
-    //    return index % 3 === 0;
-    //})
-    .map(elem => {
-        //const timestamp = elem.dt + weather.timezone_offset;
-        const timestamp = elem.dt + weather.timezone_offset;
-        const ms = timestamp * 1000;
-        const time = new Date(ms).toLocaleString();
-        return time;
+    .splice(0, 25)
+    .filter(function(value, index, arr) {
+        return index % 3 === 0;
     })
-;
+    .map(elem => {
+
+            const d = new Date();
+            const localTime = elem.dt * 1000;
+            const localOffset = d.getTimezoneOffset() * 60000;
+            const utc = localTime + localOffset;
+      
+            const city = utc + (weather.timezone_offset * 1000);
+            const cityTime = new Date(city).toLocaleTimeString('en-US', { hour12: false }).slice(0,5);
+            return {cityTime};
+            // elem.dt, elem.temp, elem.temp, elem.weather[0].icon
+            //return elem;
+    });
 
     console.log(hourly);
-    // to get utc
-    const now = new Date();
-    const nowUtc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
 
-    const ts = nowUtc.getTime();
-    // for some reason returns -1 hour, like 17:07 instead of 18:07
-    // huh, now it returns correct time, wtf. I'll check tomorrow, I gonna hit the bed now
-    const offset = ts + weather.timezone_offset * 1000;
+    const d = new Date();
+    const localT = d.getTime();
+    const localOff = d.getTimezoneOffset() * 60000;
+    const utc = localT + localOff;
 
-    console.log(ts);
-    console.log(new Date(offset).toLocaleString());
+    const city = utc + (weather.timezone_offset * 1000);
+    const cityD = new Date(city);
+    console.log(cityD);
+
 }
 
 displayWeather()
