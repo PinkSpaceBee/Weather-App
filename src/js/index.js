@@ -28,46 +28,54 @@ async function displayWeather() {
     const weather = await getWeatherData();
 
     //create section to display current weather data
-    domFunc.displayCurrWeather(document.querySelector('.weather-data'), weather.current.temp, weather.current.weather[0].description, weather.current.feels_like, weather.current.wind_speed, weather.current.humidity);
+    domFunc.displayCurrWeather(document.querySelector('.curr-weather'), weather.current.temp, weather.current.weather[0].description, weather.current.feels_like, weather.current.wind_speed, weather.current.humidity);
 
-    // ok apparently I can use daily.temp[time_of_day], nice
-    // but, if I use it, I won't be able to get the weather description for every hour, only temperature
-    // eh I'd rather go with hourly in this case
+    function getTime(elem) {
+        const d = new Date();
+        const localTime = elem.dt * 1000;
+        const localOffset = d.getTimezoneOffset() * 60000;
+        const utc = localTime + localOffset;
+  
+        const city = utc + (weather.timezone_offset * 1000);
+        const cityTime = new Date(city).toLocaleTimeString('en-US', { hour12: false }).slice(0,5);
 
+        return cityTime;
+    }
+
+    function getTemp(elem) {
+        console.log(elem.temp);
+        return elem.temp;
+    }
+
+    function getIcon(elem) {
+        console.log(elem.weather[0].icon);
+        return elem.weather[0].icon;
+    }
+
+    function getPop(elem) {
+        console.log(elem.pop);
+        return elem.pop;
+    }
+
+    
     // returns every 3rd hour 
     const hourly = weather.hourly
     .splice(0, 25)
     .filter(function(value, index, arr) {
         return index % 3 === 0;
     })
-    .map(elem => {
-
-            const d = new Date();
-            const localTime = elem.dt * 1000;
-            const localOffset = d.getTimezoneOffset() * 60000;
-            const utc = localTime + localOffset;
-      
-            const city = utc + (weather.timezone_offset * 1000);
-            const cityTime = new Date(city).toLocaleTimeString('en-US', { hour12: false }).slice(0,5);
-            return {cityTime};
-            // elem.dt, elem.temp, elem.temp, elem.weather[0].icon
-            //return elem;
+    .map(function(elem) {
+        //console.log(getTime(elem));
+        //getTemp(elem);
+        //getIcon(elem);
+        //getPop(elem);
+        domFunc.displayHourlyWeather(document.querySelector('.hourly-weather'), getTime(elem), getTemp(elem), getIcon(elem), getPop(elem));
     });
 
     console.log(hourly);
-
-    const d = new Date();
-    const localT = d.getTime();
-    const localOff = d.getTimezoneOffset() * 60000;
-    const utc = localT + localOff;
-
-    const city = utc + (weather.timezone_offset * 1000);
-    const cityD = new Date(city);
-    console.log(cityD);
-
 }
 
-displayWeather()
+displayWeather();
 
 displayCityDate(document.querySelector('.city-time'));
 

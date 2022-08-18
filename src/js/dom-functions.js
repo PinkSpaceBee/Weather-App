@@ -47,11 +47,23 @@ export function displayCurrWeather(container, temp, currCondition, feelsLike, wi
     humidityPBottom.textContent = `${humidity}%`;
 }
 
-export function displayHourlyWeather() {
-    // ok so the forecast api response contains hourly weather for 48 hours. I think it would be enough to display every 3rd hour of the first day. 
-    // 0,3,6,9,12,15,18,21
+export function displayHourlyWeather(container, time, temp, icon, pop) {
+    const div = container.appendChild(document.createElement('div'));
+    // time, e.g. 13:00
+    const timeP = div.appendChild(document.createElement('p'));
+    timeP.textContent = time;
 
-    
+    // temperature in C
+    const tempP = div.appendChild(document.createElement('p'));
+    tempP.textContent = `${temp}${'\u00B0'}C`;
+
+    // weather icon
+    const iconImg = div.appendChild(document.createElement('p'));
+    iconImg.textContent = icon;
+
+    //chance of rain
+    const popP = div.appendChild(document.createElement('p'));
+    popP.textContent = pop;
 }
 
 export function setCityDate(offset, city, container) {
