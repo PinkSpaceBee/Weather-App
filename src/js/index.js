@@ -3,6 +3,8 @@ import * as weatherApi from './api-functions';
 import * as domFunc from './dom-functions';
 
 let city = 'kyiv'; 
+let inputfield = document.querySelector('input');
+console.log(inputfield.value === '');
 let weather;
 
 async function getWeatherData() {
@@ -36,7 +38,7 @@ async function displayWeather() {
         const utc = localTime + localOffset;
   
         const city = utc + (weather.timezone_offset * 1000);
-        const cityTime = new Date(city).toLocaleTimeString('en-US', { hour12: false }).slice(0,5);
+        let cityTime = new Date(city).toLocaleTimeString('en-US', { hour12: false }).slice(0,5);
 
         // because for some reason it displays midnight as 24:00, who does that??
         if (cityTime === '24:00') {
@@ -93,8 +95,12 @@ searchBtn.addEventListener('click', () => {
     // reassign input
     city = document.querySelector('.search-bar > input');
     city = city.value;
+    console.log(city);
     // clear weather section
-    domFunc.removeChildren(document.querySelector('.weather-data'));
+    domFunc.removeChildren(document.querySelector('.curr-weather'));
+    domFunc.removeChildren(document.querySelector('.hourly-weather'));
+    domFunc.removeChildren(document.querySelector('.daily-weather'));
+    displayCityDate(document.querySelector('.city-time'));
     displayWeather();
     // clear input
     document.querySelector('.search-bar > input').value = '';
