@@ -3,8 +3,8 @@ import * as weatherApi from './api-functions';
 import * as domFunc from './dom-functions';
 
 let city = 'kyiv'; 
+let lastSearchedCity = city;
 let inputfield = document.querySelector('input');
-console.log(inputfield.value === '');
 let weather;
 
 async function getWeatherData() {
@@ -14,12 +14,11 @@ async function getWeatherData() {
         // get all weather data for selected city
         weather = await weatherApi.getWeatherData(`https://api.openweathermap.org/data/2.5/onecall?lat=${geocode.lat}&lon=${geocode.lon}&exclude=minutely,alerts&appid=${weatherApi.KEY}&units=metric`);
     } catch (err) {
-        // clear the page
-        domFunc.removeChildren(document.querySelector('.city-time'));
-        domFunc.removeChildren(document.querySelector('.weather'))
-
+        // so the misspelled location name isn't displayed
+        city = lastSearchedCity;
         // display error message
-        const errMessage = document.querySelector('.city-time').appendChild(document.createElement('p'));
+        const errMessage = document.createElement('p');
+        document.querySelector('.city-time').prepend(errMessage);
         errMessage.textContent = 'No results';
     }
     
@@ -100,7 +99,8 @@ const searchBtn = document.querySelector('.search-bar > button');
     
 searchBtn.addEventListener('click', () => {
     // reassign input
-    city = document.querySelector('.search-bar > input').value;
+    const searchQuery = document.querySelector('.search-bar > input').value;
+    city = searchQuery;
     
     // clear weather sections
     domFunc.removeChildren(document.querySelector('.curr-weather'));
