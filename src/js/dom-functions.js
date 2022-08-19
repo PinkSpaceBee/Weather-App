@@ -1,9 +1,13 @@
-export function displayCurrWeather(container, temp, currCondition, feelsLike, wind, humidity) {
+export function displayCurrWeather(container, icon, temp, currCondition, feelsLike, wind, humidity) {
     const currentWeatherDiv = container.appendChild(document.createElement('section'));
 
     // i divided the section into two divs so it would be easier to style
     const topDiv = currentWeatherDiv.appendChild(document.createElement('div'));
     topDiv.classList.add('top-div');
+
+    // weather icon
+    const iconImg = topDiv.appendChild(document.createElement('img'));
+    iconImg.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
     // temperature in C
     const tempP = topDiv.appendChild(document.createElement('p'));
@@ -55,7 +59,7 @@ export function displayHourlyWeather(container, time, temp, icon, pop) {
 
     // temperature in C
     const tempP = div.appendChild(document.createElement('p'));
-    tempP.textContent = `${temp}${'\u00B0'}C`;
+    tempP.textContent = `${temp} ${'\u00B0'}C`;
 
     // weather icon
     const iconImg = div.appendChild(document.createElement('img'));
@@ -63,7 +67,7 @@ export function displayHourlyWeather(container, time, temp, icon, pop) {
 
     //chance of rain
     const popP = div.appendChild(document.createElement('p'));
-    popP.textContent = pop;
+    popP.textContent = `Chance of rain: ${pop}`;
 }
 
 export function setCityDate(offset, city, container) {

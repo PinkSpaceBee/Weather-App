@@ -24,11 +24,13 @@ async function displayCityDate(container) {
     domFunc.setCityDate(data.timezone_offset, city, container);
 }
 
+displayCityDate(document.querySelector('.city-time'));
+
 async function displayWeather() {
     const weather = await getWeatherData();
 
     //create section to display current weather data
-    domFunc.displayCurrWeather(document.querySelector('.curr-weather'), weather.current.temp, weather.current.weather[0].description, weather.current.feels_like, weather.current.wind_speed, weather.current.humidity);
+    domFunc.displayCurrWeather(document.querySelector('.curr-weather'), weather.current.weather[0].icon, weather.current.temp, weather.current.weather[0].description, weather.current.feels_like, weather.current.wind_speed, weather.current.humidity);
 
     function getTime(elem) {
         const d = new Date();
@@ -39,6 +41,10 @@ async function displayWeather() {
         const city = utc + (weather.timezone_offset * 1000);
         const cityTime = new Date(city).toLocaleTimeString('en-US', { hour12: false }).slice(0,5);
 
+        // because for some reason it displays midnight as 24:00, who does that??
+        if (cityTime === '24:00') {
+            cityTime = '00:00';
+        }
         return cityTime;
     }
 
@@ -67,12 +73,9 @@ async function displayWeather() {
         domFunc.displayHourlyWeather(document.querySelector('.hourly-weather'), getTime(elem), getTemp(elem), getIcon(elem), getPop(elem));
     });
 
-    console.log(hourly);
 }
 
 displayWeather();
-
-displayCityDate(document.querySelector('.city-time'));
 
 const searchBtn = document.querySelector('.search-bar > button');
   
