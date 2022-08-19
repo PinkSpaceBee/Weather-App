@@ -8,13 +8,20 @@ console.log(inputfield.value === '');
 let weather;
 
 async function getWeatherData() {
-    // get lat and lon
-    const geocode = await weatherApi.geocode(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${weatherApi.KEY}`, city);
-    
-    // get all weather data for selected city
-    weather = await weatherApi.getWeatherData(`https://api.openweathermap.org/data/2.5/onecall?lat=${geocode.lat}&lon=${geocode.lon}&exclude=minutely,alerts&appid=${weatherApi.KEY}&units=metric`)
-    
-    console.log(weather);
+    try {
+        const geocode = await weatherApi.geocode(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${weatherApi.KEY}`, city);
+
+        // get all weather data for selected city
+        weather = await weatherApi.getWeatherData(`https://api.openweathermap.org/data/2.5/onecall?lat=${geocode.lat}&lon=${geocode.lon}&exclude=minutely,alerts&appid=${weatherApi.KEY}&units=metric`);
+    } catch (err) {
+        // clear the page
+        domFunc.removeChildren(document.querySelector('.city-time'));
+        domFunc.removeChildren(document.querySelector('.weather'))
+
+        // display error message
+        const errMessage = document.querySelector('.city-time').appendChild(document.createElement('p'));
+        errMessage.textContent = 'No results';
+    }
     
     return weather;
 }
@@ -93,13 +100,13 @@ const searchBtn = document.querySelector('.search-bar > button');
     
 searchBtn.addEventListener('click', () => {
     // reassign input
-    city = document.querySelector('.search-bar > input');
-    city = city.value;
-    console.log(city);
-    // clear weather section
+    city = document.querySelector('.search-bar > input').value;
+    
+    // clear weather sections
     domFunc.removeChildren(document.querySelector('.curr-weather'));
     domFunc.removeChildren(document.querySelector('.hourly-weather'));
     domFunc.removeChildren(document.querySelector('.daily-weather'));
+
     displayCityDate(document.querySelector('.city-time'));
     displayWeather();
     // clear input
