@@ -1,8 +1,7 @@
 export function displayCurrWeather(container, icon, temp, currCondition, feelsLike, wind, humidity) {
-    const currentWeatherDiv = container.appendChild(document.createElement('section'));
 
     // i divided the section into two divs so it would be easier to style
-    const topDiv = currentWeatherDiv.appendChild(document.createElement('div'));
+    const topDiv = container.appendChild(document.createElement('div'));
     topDiv.classList.add('top-div');
 
     // weather icon
@@ -34,7 +33,7 @@ export function displayCurrWeather(container, icon, temp, currCondition, feelsLi
     const feelsLikeP = topDiv.appendChild(document.createElement('p'));
     feelsLikeP.textContent = `Feels like ${feelsLike}`;
 
-    const bottomDiv = currentWeatherDiv.appendChild(document.createElement('div'));
+    const bottomDiv = container.appendChild(document.createElement('div'));
     bottomDiv.classList.add('bottom-div');
 
     // wind speed in metre/sec
