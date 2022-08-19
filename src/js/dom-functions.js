@@ -52,7 +52,9 @@ export function displayCurrWeather(container, icon, temp, currCondition, feelsLi
 }
 
 export function displayHourlyWeather(container, time, temp, icon, pop) {
+    // container div
     const div = container.appendChild(document.createElement('div'));
+
     // time, e.g. 13:00
     const timeP = div.appendChild(document.createElement('p'));
     timeP.textContent = time;
@@ -67,7 +69,29 @@ export function displayHourlyWeather(container, time, temp, icon, pop) {
 
     //chance of rain
     const popP = div.appendChild(document.createElement('p'));
-    popP.textContent = `Chance of rain: ${pop}`;
+    popP.textContent = `Chance of precipitation: ${pop}`;
+}
+
+export function displayDailyWeather(container, date, maxTemp, minTemp, icon) {
+    // container div 
+    const div = container.appendChild(document.createElement('div'));
+
+    // date
+    const dateP = div.appendChild(document.createElement('p'));
+    dateP.textContent = date;
+
+    // max temperature in C
+    const maxTempP = div.appendChild(document.createElement('p'));
+    maxTempP.textContent = maxTemp;
+
+    // min temperature in C
+    const minTempP = div.appendChild(document.createElement('p'));
+    minTempP.textContent = minTemp;
+
+    // weather icon
+    const iconImg = div.appendChild(document.createElement('img'));
+    iconImg.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+    
 }
 
 export function setCityDate(offset, city, container) {

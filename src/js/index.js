@@ -10,7 +10,7 @@ async function getWeatherData() {
     const geocode = await weatherApi.geocode(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${weatherApi.KEY}`, city);
     
     // get all weather data for selected city
-    weather = await weatherApi.getWeatherData(`https://api.openweathermap.org/data/2.5/onecall?lat=${geocode.lat}&lon=${geocode.lon}&exclude=minutely,alerts&appid=${weatherApi.KEY}&units=metric`);
+    weather = await weatherApi.getWeatherData(`https://api.openweathermap.org/data/2.5/onecall?lat=${geocode.lat}&lon=${geocode.lon}&exclude=minutely,alerts&appid=${weatherApi.KEY}&units=metric`)
     
     console.log(weather);
     
@@ -29,9 +29,6 @@ displayCityDate(document.querySelector('.city-time'));
 async function displayWeather() {
     const weather = await getWeatherData();
 
-    //create section to display current weather data
-    domFunc.displayCurrWeather(document.querySelector('.curr-weather'), weather.current.weather[0].icon, weather.current.temp, weather.current.weather[0].description, weather.current.feels_like, weather.current.wind_speed, weather.current.humidity);
-
     function getTime(elem) {
         const d = new Date();
         const localTime = elem.dt * 1000;
@@ -48,31 +45,43 @@ async function displayWeather() {
         return cityTime;
     }
 
-    function getTemp(elem) {
-        console.log(elem.temp);
-        return elem.temp;
+    function getDate(elem) {
+        const d = new Date();
+        const localTime = elem.dt * 1000;
+        const localOffset = d.getTimezoneOffset() * 60000;
+        const utc = localTime + localOffset;
+  
+        const utcWOffset = utc + (weather.timezone_offset * 1000);
+        const date = new Date(utcWOffset).toLocaleString().slice(0,4);
+
+        return date;
     }
 
-    function getIcon(elem) {
-        console.log(elem.weather[0].icon);
-        return elem.weather[0].icon;
+    // CURRENT WEATHER
+    domFunc.displayCurrWeather(document.querySelector('.curr-weather'), weather.current.weather[0].icon, weather.current.temp, weather.current.weather[0].description, weather.current.feels_like, weather.current.wind_speed, weather.current.humidity);
+
+    // HOURLY WEATHER
+    function displayHourly() {
+    
+        weather.hourly
+        // get the first 24 hours
+        .splice(0, 25)
+        // get every 3rd hour
+        .filter(function(value, index, arr) {
+            return index % 3 === 0;
+        })
+        .map(function (elem) {
+            // create section to display hourly weather data
+            domFunc.displayHourlyWeather(document.querySelector('.hourly-weather'), getTime(elem), elem.temp, elem.weather[0].icon, elem.pop);
+        });
     }
 
-    function getPop(elem) {
-        console.log(elem.pop);
-        return elem.pop;
-    }
+    displayHourly();
 
-    // returns every 3rd hour 
-    const hourly = weather.hourly
-    .splice(0, 25)
-    .filter(function(value, index, arr) {
-        return index % 3 === 0;
-    })
-    .map(function(elem) {
-        domFunc.displayHourlyWeather(document.querySelector('.hourly-weather'), getTime(elem), getTemp(elem), getIcon(elem), getPop(elem));
+    // DAILY WEATHER   
+    weather.daily.map(function (elem) {
+        domFunc.displayDailyWeather(document.querySelector('.daily-weather'), getDate(elem), elem.temp.max, elem.temp.min, elem.weather[0].icon);
     });
-
 }
 
 displayWeather();
