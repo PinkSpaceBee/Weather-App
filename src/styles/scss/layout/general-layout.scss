@@ -1,0 +1,33 @@
+
+body {
+    background-color: rgb(255, 251, 204);
+}
+
+main {
+    background-color: plum;
+
+    .city-time {
+        background-color: rgb(87, 214, 161);
+    }
+    
+    .weather {
+        background-color: rgb(151, 218, 218);
+
+        .curr-weather {
+            background-color: rgb(155, 218, 192);
+        }
+
+        .hourly-weather {
+            background-color: rgb(168, 218, 155);
+        }
+
+        .daily-weather {
+            background-color: rgb(253, 232, 109);
+        }
+    }
+}
+
+header {
+    background-color: powderblue;
+}
+
