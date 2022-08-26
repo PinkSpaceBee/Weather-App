@@ -1,0 +1,40 @@
+/* COLORS */
+$orient: rgba(0, 82, 136, 1);
+$ripe-plum: rgb(68, 0, 107);
+
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+
+$roboto: 'Roboto';
+$dm-sans: 'DM Sans';
+
+$thin: 100;
+$light: 300;
+$regular: 400;
+$bold: 700;
+
+/* BREAKPOINTS FOR SCREEN SIZES */
+
+@mixin for-phone {
+    @media (max-width: 599px) { @content; }
+}
+
+@mixin for-phone-landscape {
+    @media(max-width: 768px)
+    and (orientation: landscape) { @content; }
+}
+
+@mixin for-tablet {
+    @media (min-width: 600px) { @content; }
+}
+
+@mixin for-desktop {
+    @media (min-width: 1100px) { @content; }
+}
+
+@mixin for-big-desktop {
+    @media (min-width: 1800px) { @content; }
+}
