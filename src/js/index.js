@@ -4,7 +4,7 @@ import * as domFunc from './dom-functions';
 
 let city = 'kyiv'; 
 let lastSearchedCity = city;
-let inputfield = document.querySelector('input');
+const searchBtn = document.querySelector('.search-bar > button');
 let weather;
 
 async function getWeatherData() {
@@ -92,13 +92,13 @@ async function displayWeather() {
     weather.daily.map(function (elem) {
         domFunc.displayDailyWeather(document.querySelector('.daily-weather'), getDate(elem), elem.temp.max, elem.temp.min, elem.weather[0].icon);
     });
+    // don't display daily weather section by default, only when user clicks the "7 days" button
+    document.querySelector('.daily-weather').style.display = 'none';
 }
 
 displayWeather();
-
-const searchBtn = document.querySelector('.search-bar > button');
   
-    
+// SEARCH FOR CITY  
 searchBtn.addEventListener('click', () => {
     // reassign input
     const searchQuery = document.querySelector('.search-bar > input').value;
@@ -114,4 +114,17 @@ searchBtn.addEventListener('click', () => {
     // clear input
     document.querySelector('.search-bar > input').value = '';
 });
-        
+
+// switch between the daily and hourly forecast
+const dailyButton = document.querySelector('.switch-view').children[1];
+const hourlyButton = document.querySelector('.switch-view').children[0];
+
+dailyButton.addEventListener('click', () => {
+    document.querySelector('.hourly-weather').style.display = 'none';
+    document.querySelector('.daily-weather').style.display = 'block';
+});
+
+hourlyButton.addEventListener('click', () => {
+    document.querySelector('.daily-weather').style.display = 'none';
+    document.querySelector('.hourly-weather').style.display = 'block';
+});

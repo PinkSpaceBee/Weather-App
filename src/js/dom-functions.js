@@ -68,7 +68,7 @@ export function displayHourlyWeather(container, time, temp, icon, pop) {
 
     //chance of rain
     const popP = div.appendChild(document.createElement('p'));
-    popP.textContent = `Chance of rain: ${pop * 100}%`;
+    popP.textContent = `Chance of rain: ${Math.round(pop * 100)}%`;
 }
 
 export function displayDailyWeather(container, date, maxTemp, minTemp, icon) {

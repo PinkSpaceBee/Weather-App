@@ -41,19 +41,20 @@ main {
     // SECTION THAT DISPLAYS WEATHER
     .weather {
         display: grid;
-        grid-template-areas: 
-        "current current"
-        "hourly daily";
 
         .curr-weather {
             display: grid;
-            grid-area: current;
-            //grid-template-rows: 30vw 20vw;
+            grid-template-rows: 70% 30%;
+            //grid-gap: 1rem;
+
+            height: 36vh;
 
             .top-div {
                 display: grid;
-                grid-template-columns: 1fr 1.5fr;
-                grid-template-rows: 60% 40%;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 100px 1fr;
+                //grid-template-rows: 1fr 0.1fr;
+                grid-gap: 0.3rem;
                 justify-items: start;
                 align-items: stretch;
 
@@ -65,6 +66,7 @@ main {
                 // weather icon
                 img {
                     align-self: start;
+                    margin-top: 20px;
                 }
 
                 // temperature
@@ -76,19 +78,21 @@ main {
 
             .bottom-div {
                 display: grid;
-                grid-template-columns: 1fr 2fr;
-                grid-template-rows: 1fr 1fr;
+                //margin-top: 1rem;
+                * {
+                    margin: 0;
+                }
+                //grid-template-columns: 1fr;
+                //grid-template-rows: 1fr;
             }
         }
 
         .hourly-weather {
             display: grid;
-            grid-area: hourly;
         }
 
         .daily-weather {
             display: grid;
-            grid-area: daily;
         }
     }
 }
