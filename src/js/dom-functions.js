@@ -10,7 +10,7 @@ export function displayCurrWeather(container, icon, temp, currCondition, feelsLi
 
     // temperature in C
     const tempP = topDiv.appendChild(document.createElement('p'));
-    tempP.textContent = `${temp} ${'\u00B0'}C`;
+    tempP.textContent = `${Math.round(temp)} ${'\u00B0'}C`;
 
     // current condition, like rain, or drizzle
     const currConditionP = topDiv.appendChild(document.createElement('p'));
@@ -31,23 +31,23 @@ export function displayCurrWeather(container, icon, temp, currCondition, feelsLi
 
     // human perception of weather in C
     const feelsLikeP = topDiv.appendChild(document.createElement('p'));
-    feelsLikeP.textContent = `Feels like ${feelsLike}`;
+    feelsLikeP.textContent = `Feels like ${Math.round(feelsLike)} ${'\u00B0'}C`;
 
     const bottomDiv = container.appendChild(document.createElement('div'));
     bottomDiv.classList.add('bottom-div');
 
     // wind speed in metre/sec
     // split the text into 2 p elements so it would look better
+    //const windP = bottomDiv.appendChild(document.createElement('p'));
+    //windP.textContent = `Wind speed`;
     const windP = bottomDiv.appendChild(document.createElement('p'));
-    windP.textContent = `Wind speed`;
-    const windPBottom = bottomDiv.appendChild(document.createElement('p'));
-    windPBottom.textContent = `${wind} m/s`;
+    windP.textContent = `Wind speed: ${wind} m/s`;
     // humidity, %
     // again, two p elements
+    //const humidityP = bottomDiv.appendChild(document.createElement('p'));
+    //humidityP.textContent = `Humidity`;
     const humidityP = bottomDiv.appendChild(document.createElement('p'));
-    humidityP.textContent = `Humidity`;
-    const humidityPBottom = bottomDiv.appendChild(document.createElement('p'));
-    humidityPBottom.textContent = `${humidity}%`;
+    humidityP.textContent = `Humidity: ${humidity}%`;
 }
 
 export function displayHourlyWeather(container, time, temp, icon, pop) {
@@ -60,7 +60,7 @@ export function displayHourlyWeather(container, time, temp, icon, pop) {
 
     // temperature in C
     const tempP = div.appendChild(document.createElement('p'));
-    tempP.textContent = `${temp} ${'\u00B0'}C`;
+    tempP.textContent = `${Math.round(temp)} ${'\u00B0'}C`;
 
     // weather icon
     const iconImg = div.appendChild(document.createElement('img'));
@@ -68,7 +68,7 @@ export function displayHourlyWeather(container, time, temp, icon, pop) {
 
     //chance of rain
     const popP = div.appendChild(document.createElement('p'));
-    popP.textContent = `Chance of precipitation: ${pop}`;
+    popP.textContent = `Chance of rain: ${pop * 100}%`;
 }
 
 export function displayDailyWeather(container, date, maxTemp, minTemp, icon) {
@@ -81,11 +81,11 @@ export function displayDailyWeather(container, date, maxTemp, minTemp, icon) {
 
     // max temperature in C
     const maxTempP = div.appendChild(document.createElement('p'));
-    maxTempP.textContent = maxTemp;
+    maxTempP.textContent = `${Math.round(maxTemp)} ${'\u00B0'}C`;
 
     // min temperature in C
     const minTempP = div.appendChild(document.createElement('p'));
-    minTempP.textContent = minTemp;
+    minTempP.textContent = `${Math.round(minTemp)} ${'\u00B0'}C`;
 
     // weather icon
     const iconImg = div.appendChild(document.createElement('img'));

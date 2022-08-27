@@ -60,7 +60,9 @@ async function displayWeather() {
         const utc = localTime + localOffset;
   
         const utcWOffset = utc + (weather.timezone_offset * 1000);
-        const date = new Date(utcWOffset).toLocaleString().slice(0,4);
+        const date = new Date(utcWOffset)
+            .toString()
+            .slice(4,11);
 
         return date;
     }

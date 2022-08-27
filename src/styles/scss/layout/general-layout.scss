@@ -8,11 +8,10 @@ body {
     margin: 0;
     padding: 1rem;
 
-    // to make bg a bit darker
     // night mode
     background-image: linear-gradient(transparentize($ripe-plum, 0.5), transparentize($ripe-plum, 0.5)),url("../images/back-img.jpg");
     // day mode
-    background-image: linear-gradient(transparentize($orient, 0.4), transparentize($orient, 0.4)),url("../images/back-img.jpg");
+    //background-image: linear-gradient(transparentize($orient, 0.4), transparentize($orient, 0.4)),url("../images/back-img.jpg");
 
     background-attachment: fixed;
     background-size: cover;
@@ -24,26 +23,33 @@ body {
 main {
     display: grid;
 
+    // SECTION THAT DISPLAYS CITY AND DATE
     .city-time {
         margin-top: 2rem;
-        //background-color: rgba(#fff, .5);
-        // for all elements
+
+        // all elements
         * {
             margin: 0;
             font-size: 20px;
         }
-        // for city name
+        // city name
         :first-child {
             margin-bottom: 0.5rem;
             font-size: 26px;
         }
     }
-    
+    // SECTION THAT DISPLAYS WEATHER
     .weather {
+        display: grid;
+        grid-template-areas: 
+        "current current"
+        "hourly daily";
+
         .curr-weather {
             display: grid;
-            grid-template-rows: 45% 55%;
-            //grid-template-rows: 1fr 3fr;
+            grid-area: current;
+            //grid-template-rows: 30vw 20vw;
+
             .top-div {
                 display: grid;
                 grid-template-columns: 1fr 1.5fr;
@@ -53,7 +59,8 @@ main {
 
                 // all items
                 * {
-                    margin: 0;
+                    margin: 0 0.5rem 0 0;
+                    //padding-right: 0.5rem;
                 }
                 // weather icon
                 img {
@@ -66,14 +73,22 @@ main {
                     font-size: 34px;
                 }
             }
+
+            .bottom-div {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                grid-template-rows: 1fr 1fr;
+            }
         }
 
         .hourly-weather {
-
+            display: grid;
+            grid-area: hourly;
         }
 
         .daily-weather {
-
+            display: grid;
+            grid-area: daily;
         }
     }
 }
