@@ -26,31 +26,31 @@ main {
       margin-bottom: 0.5rem;
       font-size: 26px; }
   main .weather {
-    display: grid;
-    grid-template-areas: "current current" "hourly daily"; }
+    display: grid; }
     main .weather .curr-weather {
       display: grid;
-      grid-area: current; }
+      grid-template-rows: 70% 30%;
+      height: 36vh; }
       main .weather .curr-weather .top-div {
         display: grid;
-        grid-template-columns: 1fr 1.5fr;
-        grid-template-rows: 60% 40%;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 100px 1fr;
+        grid-gap: 0.3rem;
         justify-items: start;
         align-items: stretch; }
         main .weather .curr-weather .top-div * {
           margin: 0 0.5rem 0 0; }
         main .weather .curr-weather .top-div img {
-          align-self: start; }
+          align-self: start;
+          margin-top: 20px; }
         main .weather .curr-weather .top-div p:first-of-type {
           align-self: end;
           font-size: 34px; }
       main .weather .curr-weather .bottom-div {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        grid-template-rows: 1fr 1fr; }
+        display: grid; }
+        main .weather .curr-weather .bottom-div * {
+          margin: 0; }
     main .weather .hourly-weather {
-      display: grid;
-      grid-area: hourly; }
+      display: grid; }
     main .weather .daily-weather {
-      display: grid;
-      grid-area: daily; }
+      display: grid; }
