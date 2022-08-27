@@ -10,7 +10,6 @@ body {
   margin: 0;
   padding: 1rem;
   background-image: linear-gradient(rgba(68, 0, 107, 0.5), rgba(68, 0, 107, 0.5)), url("../images/back-img.jpg");
-  background-image: linear-gradient(rgba(0, 82, 136, 0.6), rgba(0, 82, 136, 0.6)), url("../images/back-img.jpg");
   background-attachment: fixed;
   background-size: cover;
   font: 16px "DM Sans";
@@ -26,19 +25,32 @@ main {
     main .city-time :first-child {
       margin-bottom: 0.5rem;
       font-size: 26px; }
-  main .weather .curr-weather {
+  main .weather {
     display: grid;
-    grid-template-rows: 45% 55%; }
-    main .weather .curr-weather .top-div {
+    grid-template-areas: "current current" "hourly daily"; }
+    main .weather .curr-weather {
       display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      grid-template-rows: 60% 40%;
-      justify-items: start;
-      align-items: stretch; }
-      main .weather .curr-weather .top-div * {
-        margin: 0; }
-      main .weather .curr-weather .top-div img {
-        align-self: start; }
-      main .weather .curr-weather .top-div p:first-of-type {
-        align-self: end;
-        font-size: 34px; }
+      grid-area: current; }
+      main .weather .curr-weather .top-div {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        grid-template-rows: 60% 40%;
+        justify-items: start;
+        align-items: stretch; }
+        main .weather .curr-weather .top-div * {
+          margin: 0 0.5rem 0 0; }
+        main .weather .curr-weather .top-div img {
+          align-self: start; }
+        main .weather .curr-weather .top-div p:first-of-type {
+          align-self: end;
+          font-size: 34px; }
+      main .weather .curr-weather .bottom-div {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr 1fr; }
+    main .weather .hourly-weather {
+      display: grid;
+      grid-area: hourly; }
+    main .weather .daily-weather {
+      display: grid;
+      grid-area: daily; }
