@@ -41,18 +41,21 @@ main {
     // SECTION THAT DISPLAYS WEATHER
     .weather {
         display: grid;
+        margin-top: 1.5rem;
 
         .curr-weather {
             display: grid;
             grid-template-rows: 70% 30%;
-            //grid-gap: 1rem;
 
-            height: 36vh;
+            height: 30vh;
+            padding: 0 1rem 1rem 1rem;
+            background-color: transparentize(#fff, 0.8);
+            border-radius: 8px;
 
             .top-div {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                grid-template-rows: 100px 1fr;
+                grid-template-rows: 80px 1fr;
                 //grid-template-rows: 1fr 0.1fr;
                 grid-gap: 0.3rem;
                 justify-items: start;
@@ -66,7 +69,7 @@ main {
                 // weather icon
                 img {
                     align-self: start;
-                    margin-top: 20px;
+                    //margin-top: 20px;
                 }
 
                 // temperature
@@ -89,10 +92,54 @@ main {
 
         .hourly-weather {
             display: grid;
+
+            & > div {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: 1.2fr 1fr 1fr;
+                align-items: center;
+
+                height: 18vh;
+
+                margin: 1.5rem 0 1rem 0;
+                padding: 0.8rem;
+
+                //background-color: transparentize(#fff, 0.8);
+                border: 1px solid #fff;
+                border-radius: 8px;
+
+                * {
+                    margin: 0;
+                    font-size: 20px;
+                }
+
+                // weather icon img
+                img {
+                    height: 40px;
+                }
+                // time p
+                & :first-child {
+                    grid-column: 1/5;
+                    font-size: 26px;
+                }
+                // chance of rain p
+                & :last-child {
+                    grid-column: 1/5;
+                    font-size: 16px;
+                }
+            }
         }
 
         .daily-weather {
             display: grid;
+        }
+
+        .switch-view {
+            // 2px to account for the button borders
+            margin: 1rem 0 0 2px;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            grid-gap: 1rem;
         }
     }
 }
