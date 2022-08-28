@@ -3,6 +3,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
 /* BREAKPOINTS FOR SCREEN SIZES */
+button {
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 2rem;
+  width: 6rem;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  font: 14px "DM Sans";
+  color: #fff; }
+  button:hover, button:active {
+    transform: scale(1.05); }
+  button:focus {
+    background-color: rgba(235, 133, 255, 0.5); }
+
 body {
   display: grid;
   position: relative;

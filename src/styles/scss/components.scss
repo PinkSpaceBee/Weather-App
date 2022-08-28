@@ -1,0 +1,22 @@
+button {
+    background-color: transparentize(#fff, 0.8);
+
+    height: 2rem;
+    width: 6rem;
+
+    border: 2px solid #fff;
+    border-radius: 4px;
+
+    font: 14px $dm-sans;
+    color: #fff;
+
+    &:hover,
+    &:active
+     {
+        transform: scale(1.05);
+    }
+
+    &:focus {
+        background-color: rgba(235, 133, 255, 0.5);
+    }
+}
