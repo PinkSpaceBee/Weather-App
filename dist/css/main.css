@@ -91,6 +91,31 @@ main {
           font-size: 16px; }
     main .weather .daily-weather {
       display: grid; }
+      main .weather .daily-weather > div {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        align-items: center;
+        height: 18vh;
+        margin: 1.5rem 0 1rem 0;
+        padding: 0.8rem 0.8rem 0 0.8rem;
+        border: 1px solid #fff;
+        border-radius: 8px; }
+        main .weather .daily-weather > div * {
+          grid-column: 1/2;
+          margin: 0; }
+          main .weather .daily-weather > div *:nth-child(2) {
+            font-size: 22px; }
+          main .weather .daily-weather > div *:nth-child(3) {
+            align-self: start; }
+        main .weather .daily-weather > div :first-child {
+          grid-column: 1/5;
+          padding-bottom: 0.2rem;
+          font-size: 26px; }
+        main .weather .daily-weather > div :last-child {
+          grid-column: 2/5;
+          grid-row: 2/3;
+          height: 40px; }
     main .weather .switch-view {
       margin: 1rem 0 0 2px;
       display: grid;
