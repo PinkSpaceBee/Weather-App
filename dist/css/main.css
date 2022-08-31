@@ -60,6 +60,13 @@ button {
       .weather .curr-weather {
         grid-template-rows: 2fr 1fr;
         height: 30vw; } }
+    @media (min-width: 1100px) {
+      .weather .curr-weather {
+        grid-template-rows: minmax(auto, 160px) 30%;
+        height: 16vw;
+        max-height: 200px;
+        width: 50vw;
+        max-width: 600px; } }
     .weather .curr-weather .top-div {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -71,6 +78,9 @@ button {
         .weather .curr-weather .top-div {
           grid-template-columns: 1fr 2.5fr; } }
       @media (min-width: 600px) {
+        .weather .curr-weather .top-div {
+          grid-template-columns: 1fr 2fr; } }
+      @media (min-width: 1100px) {
         .weather .curr-weather .top-div {
           grid-template-columns: 1fr 2fr; } }
       .weather .curr-weather .top-div * {
@@ -91,7 +101,8 @@ button {
     display: grid; }
     @media (min-width: 1100px) {
       .weather .hourly-weather {
-        grid-template-columns: repeat(9, 1fr); } }
+        grid-template-columns: repeat(9, 1fr);
+        grid-gap: 0.4rem; } }
     .weather .hourly-weather > div {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -111,6 +122,12 @@ button {
           grid-template-columns: 1fr 8fr;
           grid-template-rows: repeat(3, 1fr);
           max-height: 20vw; } }
+      @media (min-width: 1100px) {
+        .weather .hourly-weather > div {
+          grid-template-columns: minmax(50px, 1fr) 1fr;
+          height: 12vw;
+          max-height: 140px;
+          min-width: 0; } }
       .weather .hourly-weather > div * {
         grid-column: 1/2;
         margin: 0;
@@ -130,6 +147,9 @@ button {
         font-size: 16px; }
   .weather .daily-weather {
     display: grid; }
+    @media (min-width: 1100px) {
+      .weather .daily-weather {
+        grid-template-columns: repeat(7, 1fr); } }
     .weather .daily-weather > div {
       display: grid;
       grid-template-columns: repeat(4, 1fr);

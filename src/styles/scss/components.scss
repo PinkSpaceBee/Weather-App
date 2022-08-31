@@ -88,6 +88,15 @@ button {
             height: 30vw;
         }
 
+        @include for-desktop {
+            grid-template-rows: minmax(auto, 160px) 30%;
+
+            height: 16vw;
+            max-height: 200px;
+            width: 50vw;
+            max-width: 600px;
+        }
+
         .top-div {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -102,7 +111,10 @@ button {
 
             @include for-tablet {
                 grid-template-columns: 1fr 2fr;
-                //grid-template-rows: 80px 1fr;
+            }
+
+            @include for-desktop {
+                grid-template-columns: 1fr 2fr;
             }
 
             // all items
@@ -140,6 +152,7 @@ button {
 
         @include for-desktop {
             grid-template-columns: repeat(9, 1fr);
+            grid-gap: 0.4rem;
         }
 
         & > div {
@@ -165,6 +178,15 @@ button {
                 grid-template-columns: 1fr 8fr;
                 grid-template-rows: repeat(3, 1fr);
                 max-height: 20vw;
+            }
+
+            @include for-desktop {
+                grid-template-columns: minmax(50px, 1fr) 1fr;
+
+                height: 12vw;
+                max-height: 140px;
+
+                min-width: 0;
             }
 
             * {
@@ -199,6 +221,10 @@ button {
 
     .daily-weather {
         display: grid;
+
+        @include for-desktop {
+            grid-template-columns: repeat(7, 1fr);
+        }
 
         & > div {
             display: grid;
