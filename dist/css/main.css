@@ -18,120 +18,154 @@ button {
 
 .search-bar {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  margin-top: 0.5rem; }
+  grid-template-columns: minmax(0, 1fr) 100px;
+  margin: 0.5rem 1rem 0 1rem; }
   .search-bar :first-child {
     padding-left: 0.5rem;
     border: 0; }
+    .search-bar :first-child:focus {
+      outline: none;
+      box-shadow: 0 0 10px rgba(68, 0, 107, 0.5); }
   .search-bar :last-child {
-    justify-self: end; }
+    justify-self: start;
+    margin-left: 0.4rem; }
+
+.city-time {
+  margin-top: 1rem; }
+  .city-time * {
+    margin: 0;
+    font-size: 20px; }
+  .city-time :first-child {
+    margin-bottom: 0.5rem;
+    font-size: 26px; }
+
+.weather {
+  display: grid;
+  margin-top: 1.5rem; }
+  .weather .curr-weather {
+    display: grid;
+    grid-template-rows: 70% 30%;
+    height: 30vh;
+    margin-bottom: 1rem;
+    padding: 0 1rem 1rem 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px; }
+    @media (max-width: 768px) and (orientation: landscape) {
+      .weather .curr-weather {
+        height: 56vh; } }
+    .weather .curr-weather .top-div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 80px 1fr;
+      grid-gap: 0.3rem;
+      justify-items: start;
+      align-items: stretch; }
+      @media (max-width: 768px) and (orientation: landscape) {
+        .weather .curr-weather .top-div {
+          grid-template-columns: 1fr 2.5fr; } }
+      .weather .curr-weather .top-div * {
+        margin: 0 0.5rem 0 0; }
+      .weather .curr-weather .top-div img {
+        align-self: start; }
+      .weather .curr-weather .top-div p:first-of-type {
+        align-self: end;
+        font-size: 34px; }
+    .weather .curr-weather .bottom-div {
+      display: grid; }
+      .weather .curr-weather .bottom-div * {
+        margin: 0; }
+  .weather .hourly-weather {
+    display: grid; }
+    .weather .hourly-weather > div {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1.2fr 1fr 1fr;
+      align-items: center;
+      height: 18vh;
+      margin: 1.5rem 0 1rem 0;
+      padding: 0.8rem;
+      border: 1px solid #fff;
+      border-radius: 8px; }
+      @media (max-width: 768px) and (orientation: landscape) {
+        .weather .hourly-weather > div {
+          grid-template-columns: 1fr 8fr;
+          height: 26vh; } }
+      .weather .hourly-weather > div * {
+        margin: 0;
+        font-size: 20px; }
+      .weather .hourly-weather > div img {
+        height: 40px; }
+      .weather .hourly-weather > div :first-child {
+        grid-column: 1/5;
+        font-size: 26px; }
+      .weather .hourly-weather > div :last-child {
+        grid-column: 1/5;
+        font-size: 16px; }
+  .weather .daily-weather {
+    display: grid; }
+    .weather .daily-weather > div {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      align-items: center;
+      height: 18vh;
+      margin: 1.5rem 0 1rem 0;
+      padding: 0.8rem 0.8rem 0 0.8rem;
+      border: 1px solid #fff;
+      border-radius: 8px; }
+      @media (max-width: 768px) and (orientation: landscape) {
+        .weather .daily-weather > div {
+          height: 30vh;
+          grid-template-columns: 1fr 6fr; } }
+      .weather .daily-weather > div * {
+        grid-column: 1/2;
+        margin: 0; }
+        .weather .daily-weather > div *:nth-child(2) {
+          font-size: 22px; }
+        .weather .daily-weather > div *:nth-child(3) {
+          align-self: start; }
+      .weather .daily-weather > div :first-child {
+        grid-column: 1/5;
+        padding-bottom: 0.2rem;
+        font-size: 26px; }
+        @media (max-width: 768px) and (orientation: landscape) {
+          .weather .daily-weather > div :first-child {
+            grid-column: 1; } }
+      .weather .daily-weather > div :last-child {
+        grid-column: 2/5;
+        grid-row: 2/4;
+        height: 60px; }
+        @media (max-width: 768px) and (orientation: landscape) {
+          .weather .daily-weather > div :last-child {
+            height: 80px;
+            grid-row: 1/4; } }
+  .weather .switch-view {
+    margin: 1rem 0 0 2px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 1rem; }
+    @media (max-width: 768px) and (orientation: landscape) {
+      .weather .switch-view {
+        grid-template-columns: 1fr 5fr; } }
 
 body {
-  display: grid;
   position: relative;
   overflow: auto;
   margin: 0;
-  padding: 1rem;
   background-image: linear-gradient(rgba(68, 0, 107, 0.5), rgba(68, 0, 107, 0.5)), url("../images/back-img.jpg");
   background-attachment: fixed;
   background-size: cover;
   font: 16px "DM Sans";
   color: #fff; }
-
-header {
-  font-weight: 700; }
-
-main {
-  display: grid; }
-  main .city-time {
-    margin-top: 2rem; }
-    main .city-time * {
-      margin: 0;
-      font-size: 20px; }
-    main .city-time :first-child {
-      margin-bottom: 0.5rem;
-      font-size: 26px; }
-  main .weather {
+  body header {
+    font-weight: 700;
+    margin: 1.5rem 1rem 0 1rem; }
+  body main {
     display: grid;
-    margin-top: 1.5rem; }
-    main .weather .curr-weather {
-      display: grid;
-      grid-template-rows: 70% 30%;
-      height: 30vh;
-      margin-bottom: 1rem;
-      padding: 0 1rem 1rem 1rem;
-      background-color: rgba(255, 255, 255, 0.2);
-      border-radius: 8px; }
-      main .weather .curr-weather .top-div {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 80px 1fr;
-        grid-gap: 0.3rem;
-        justify-items: start;
-        align-items: stretch; }
-        main .weather .curr-weather .top-div * {
-          margin: 0 0.5rem 0 0; }
-        main .weather .curr-weather .top-div img {
-          align-self: start; }
-        main .weather .curr-weather .top-div p:first-of-type {
-          align-self: end;
-          font-size: 34px; }
-      main .weather .curr-weather .bottom-div {
-        display: grid; }
-        main .weather .curr-weather .bottom-div * {
-          margin: 0; }
-    main .weather .hourly-weather {
-      display: grid; }
-      main .weather .hourly-weather > div {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 1.2fr 1fr 1fr;
-        align-items: center;
-        height: 18vh;
-        margin: 1.5rem 0 1rem 0;
-        padding: 0.8rem;
-        border: 1px solid #fff;
-        border-radius: 8px; }
-        main .weather .hourly-weather > div * {
-          margin: 0;
-          font-size: 20px; }
-        main .weather .hourly-weather > div img {
-          height: 40px; }
-        main .weather .hourly-weather > div :first-child {
-          grid-column: 1/5;
-          font-size: 26px; }
-        main .weather .hourly-weather > div :last-child {
-          grid-column: 1/5;
-          font-size: 16px; }
-    main .weather .daily-weather {
-      display: grid; }
-      main .weather .daily-weather > div {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        align-items: center;
-        height: 18vh;
-        margin: 1.5rem 0 1rem 0;
-        padding: 0.8rem 0.8rem 0 0.8rem;
-        border: 1px solid #fff;
-        border-radius: 8px; }
-        main .weather .daily-weather > div * {
-          grid-column: 1/2;
-          margin: 0; }
-          main .weather .daily-weather > div *:nth-child(2) {
-            font-size: 22px; }
-          main .weather .daily-weather > div *:nth-child(3) {
-            align-self: start; }
-        main .weather .daily-weather > div :first-child {
-          grid-column: 1/5;
-          padding-bottom: 0.2rem;
-          font-size: 26px; }
-        main .weather .daily-weather > div :last-child {
-          grid-column: 2/5;
-          grid-row: 2/3;
-          height: 40px; }
-    main .weather .switch-view {
-      margin: 1rem 0 0 2px;
-      display: grid;
-      grid-template-columns: 1fr 3fr;
-      grid-gap: 1rem; }
+    margin: 1rem; }
+
+footer {
+  display: grid;
+  justify-items: end;
+  margin: 0 1rem 0 0;
+  font-size: 14px; }

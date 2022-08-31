@@ -1,12 +1,9 @@
 
 body {
-    display: grid;
-
     position:relative;
     overflow:auto;
 
     margin: 0;
-    padding: 1rem;
 
     // night mode
     background-image: linear-gradient(transparentize($ripe-plum, 0.5), transparentize($ripe-plum, 0.5)),url("../images/back-img.jpg");
@@ -18,180 +15,18 @@ body {
 
     font: 16px $dm-sans;
     color: #fff;
-}
 
-header {
-    font-weight: $bold;
-}
-
-main {
-    display: grid;
-
-    // SECTION THAT DISPLAYS CITY AND DATE
-    .city-time {
-        margin-top: 2rem;
-
-        // all elements
-        * {
-            margin: 0;
-            font-size: 20px;
-        }
-        // city name
-        :first-child {
-            margin-bottom: 0.5rem;
-            font-size: 26px;
-        }
+    header {
+        font-weight: $bold;
+        margin: 1.5rem 1rem 0 1rem;
     }
-    // SECTION THAT DISPLAYS WEATHER
-    .weather {
+    
+    main {
         display: grid;
-        margin-top: 1.5rem;
-
-        .curr-weather {
-            display: grid;
-            grid-template-rows: 70% 30%;
-
-            height: 30vh;
-            margin-bottom: 1rem;
-            padding: 0 1rem 1rem 1rem;
-            background-color: transparentize(#fff, 0.8);
-            border-radius: 8px;
-
-            .top-div {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 80px 1fr;
-                //grid-template-rows: 1fr 0.1fr;
-                grid-gap: 0.3rem;
-                justify-items: start;
-                align-items: stretch;
-
-                // all items
-                * {
-                    margin: 0 0.5rem 0 0;
-                    //padding-right: 0.5rem;
-                }
-                // weather icon
-                img {
-                    align-self: start;
-                    //margin-top: 20px;
-                }
-
-                // temperature
-                p:first-of-type {
-                    align-self: end;
-                    font-size: 34px;
-                }
-            }
-
-            .bottom-div {
-                display: grid;
-                //margin-top: 1rem;
-                * {
-                    margin: 0;
-                }
-                //grid-template-columns: 1fr;
-                //grid-template-rows: 1fr;
-            }
-        }
-
-        .hourly-weather {
-            display: grid;
-
-            & > div {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: 1.2fr 1fr 1fr;
-                align-items: center;
-
-                height: 18vh;
-
-                margin: 1.5rem 0 1rem 0;
-                padding: 0.8rem;
-
-                //background-color: transparentize(#fff, 0.8);
-                border: 1px solid #fff;
-                border-radius: 8px;
-
-                * {
-                    margin: 0;
-                    font-size: 20px;
-                }
-
-                // weather icon <img>
-                img {
-                    height: 40px;
-                }
-                // time <p>, e. g. 14:00
-                & :first-child {
-                    grid-column: 1/5;
-                    font-size: 26px;
-                }
-                // chance of rain <p>
-                & :last-child {
-                    grid-column: 1/5;
-                    font-size: 16px;
-                }
-            }
-        }
-
-        .daily-weather {
-            display: grid;
-
-            & > div {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(3, 1fr);
-                align-items: center;
-
-                height: 18vh;
-
-                margin: 1.5rem 0 1rem 0;
-                padding: 0.8rem 0.8rem 0 0.8rem;
-
-                border: 1px solid #fff;
-                border-radius: 8px;
-
-                * {
-                    grid-column: 1/2;
-                    margin: 0;
-                    
-                    // make the day temp font a bit bigger
-                    &:nth-child(2) {
-                        font-size: 22px;
-                    }
-                    // move the night temp closer to the previous elem
-                    &:nth-child(3) {
-                        align-self: start;
-                    }
-                }
-
-                // date <p>, e. g. Aug 28
-                & :first-child {
-                    grid-column: 1/5;
-                    padding-bottom: 0.2rem;
-                    font-size: 26px;
-                }
-
-                //weather icon <img>
-                & :last-child {
-                    grid-column: 2/5;  
-                    grid-row: 2/3;
-
-                    height: 40px;
-                }
-            }
-        }
-
-        .switch-view {
-            // 2px to account for the button borders
-            margin: 1rem 0 0 2px;
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            grid-gap: 1rem;
-        }
+        margin: 1rem;
     }
 }
+
 
 
 
