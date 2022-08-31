@@ -193,6 +193,10 @@ button {
                 min-width: 0;
             }
 
+            @include for-big-desktop {
+                max-width: 180px;
+            }
+
             * {
                 grid-column: 1/2;
                 margin: 0;
