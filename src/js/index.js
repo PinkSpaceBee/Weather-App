@@ -118,10 +118,10 @@ const hourlyButton = document.querySelector('.switch-view').children[0];
 
 dailyButton.addEventListener('click', () => {
     document.querySelector('.hourly-weather').style.display = 'none';
-    document.querySelector('.daily-weather').style.display = 'block';
+    document.querySelector('.daily-weather').style.display = 'grid';
 });
 
 hourlyButton.addEventListener('click', () => {
     document.querySelector('.daily-weather').style.display = 'none';
-    document.querySelector('.hourly-weather').style.display = 'block';
+    document.querySelector('.hourly-weather').style.display = 'grid';
 });
