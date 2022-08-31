@@ -2,8 +2,7 @@
 import * as weatherApi from './api-functions';
 import * as domFunc from './dom-functions';
 
-let city = 'kyiv'; 
-let lastSearchedCity = city;
+let city = 'kyiv';
 const searchBtn = document.querySelector('.search-bar > button');
 let weather;
 
@@ -15,15 +14,18 @@ async function getWeatherData() {
         weather = await weatherApi.getWeatherData(`https://api.openweathermap.org/data/2.5/onecall?lat=${geocode.lat}&lon=${geocode.lon}&exclude=minutely,alerts&appid=${weatherApi.KEY}&units=metric`);
     } catch (err) {
         // so the misspelled location name isn't displayed
-        city = lastSearchedCity;
+        city = 'kyiv';
+
+        console.log(err);
         // display error message
         const errMessage = document.createElement('p');
         document.querySelector('.city-time').prepend(errMessage);
         errMessage.textContent = 'No results';
     }
-    
+
     return weather;
 }
+
 
 async function displayCityDate(container) {
     const data = await getWeatherData();
@@ -42,9 +44,9 @@ async function displayWeather() {
         const localTime = elem.dt * 1000;
         const localOffset = d.getTimezoneOffset() * 60000;
         const utc = localTime + localOffset;
-  
+
         const city = utc + (weather.timezone_offset * 1000);
-        let cityTime = new Date(city).toLocaleTimeString('en-US', { hour12: false }).slice(0,5);
+        let cityTime = new Date(city).toLocaleTimeString('en-US', { hour12: false }).slice(0, 5);
 
         // because for some reason it displays midnight as 24:00, who does that??
         if (cityTime === '24:00') {
@@ -58,11 +60,11 @@ async function displayWeather() {
         const localTime = elem.dt * 1000;
         const localOffset = d.getTimezoneOffset() * 60000;
         const utc = localTime + localOffset;
-  
+
         const utcWOffset = utc + (weather.timezone_offset * 1000);
         const date = new Date(utcWOffset)
             .toString()
-            .slice(4,11);
+            .slice(4, 11);
 
         return date;
     }
@@ -71,22 +73,17 @@ async function displayWeather() {
     domFunc.displayCurrWeather(document.querySelector('.curr-weather'), weather.current.weather[0].icon, weather.current.temp, weather.current.weather[0].description, weather.current.feels_like, weather.current.wind_speed, weather.current.humidity);
 
     // HOURLY WEATHER
-    function displayHourly() {
-    
-        weather.hourly
+    weather.hourly
         // get the first 24 hours
         .splice(0, 25)
         // get every 3rd hour
-        .filter(function(value, index, arr) {
+        .filter(function (value, index, arr) {
             return index % 3 === 0;
         })
         .map(function (elem) {
             // create section to display hourly weather data
             domFunc.displayHourlyWeather(document.querySelector('.hourly-weather'), getTime(elem), elem.temp, elem.weather[0].icon, elem.pop);
         });
-    }
-
-    displayHourly();
 
     // DAILY WEATHER   
     weather.daily.map(function (elem) {
@@ -97,13 +94,13 @@ async function displayWeather() {
 }
 
 displayWeather();
-  
+
 // SEARCH FOR CITY  
 searchBtn.addEventListener('click', () => {
     // reassign input
     const searchQuery = document.querySelector('.search-bar > input').value;
     city = searchQuery;
-    
+
     // clear weather sections
     domFunc.removeChildren(document.querySelector('.curr-weather'));
     domFunc.removeChildren(document.querySelector('.hourly-weather'));

@@ -20,6 +20,10 @@ body {
     color: #fff;
 }
 
+header {
+    font-weight: $bold;
+}
+
 main {
     display: grid;
 
@@ -48,6 +52,7 @@ main {
             grid-template-rows: 70% 30%;
 
             height: 30vh;
+            margin-bottom: 1rem;
             padding: 0 1rem 1rem 1rem;
             background-color: transparentize(#fff, 0.8);
             border-radius: 8px;
